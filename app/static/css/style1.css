@@ -1,0 +1,20 @@
+body {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+select{
+
+    background-color: rgba(212, 101, 57, 0.777);
+    border-radius: 20px;
+    border: 4px;
+    font-size: 16px;
+    outline: none;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    vertical-align: middle;
+  }
