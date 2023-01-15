@@ -56,14 +56,18 @@
 
         <h3><strong>Affichage des images</strong></h3><br>
 
-        <div class="row">
-            <div class="col-md-2 offset-md-5">
-                <select class="custom-select" name="top" id="top_images" form="main_form">
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                </select>
-            </div>
-        </div><br><br>
+        <input type="range" id="top_images" name="top" min="20" max="100" step="5" value="20" oninput="updateValue(event)" form="main_form">
+        
+        <span id="selectedValue">20</span> 
+        <script>
+                
+                function updateValue(event) {
+                    var selectedValue = event.target.value;
+                    document.getElementById("selectedValue").innerHTML = selectedValue;
+                }
+                                    
+            
+        </script>
 
         <h3><strong>Fonction de calcul de similarité</strong></h3><br>
 

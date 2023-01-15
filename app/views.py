@@ -60,5 +60,5 @@ def run_algo():
     img = request.form['image']
     sim = request.form['similarity']
     import app.run_algo as run_algo
-    IMG_LIST = run_algo.search(img, top, des, sim)
-    return render_template('images.html', images = IMG_LIST)
+    IMG_LIST, INPUT_IM = run_algo.search(img, top, des, sim)
+    return render_template('images.html', input_im = INPUT_IM, images = IMG_LIST)

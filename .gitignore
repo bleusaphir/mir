@@ -75,7 +75,7 @@ docs/_build/
 
 # PyBuilder
 target/
-MIR_DATASETS_B/
+app/static/MIR_DATASETS_B/
 ORB/
 SIFT/
 MODEL/

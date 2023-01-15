@@ -5,7 +5,6 @@ import cv2
 def euclidianDistance(l1,l2):
   distance = 0
   length = min(len(l1),len(l2))
-  print(l2.shape)
   for i in range(length):
     distance += math.pow(l1[i] - l2[i], 2)
   return math.sqrt(distance)

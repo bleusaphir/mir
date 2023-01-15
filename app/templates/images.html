@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
 
 </head>
-    <body>
+
+<style>
+  .img {
+    margin: 10px;
+  }
+</style>
+
+<body>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #adc2d1;" > 
-            <a class="navbar-brand" href="#">MIR</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">Paramètres</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/images">Images</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/graphes">Graphiques</a>
-                  </li>
-                </ul>
-              </div>
-          </nav>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #adc2d1;">
+    <a class="navbar-brand" href="#">MIR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <center><br><br>
-          <h2><strong>Affichage des images </strong></h2><br><br>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Paramètres</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/images">Images</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/graphes">Graphiques</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-          <!--
+  <center><br><br>
+    <h2><strong>Affichage des images </strong></h2><br><br>
+
+    <!--
             <div class="col-4">
               {% for image in images %}
               <img src="{{ url_for('static', filename=image)}}" width="500" height="500" >
               {% endfor %}
               <br>
             </div>-->
-            <h3>Image entrée</h3>
-            <div class="row justify-content-around">
-              <div class="col-4">
-                {% for image in images %} 
-                <img src="{{ url_for('static', filename=image)}}" width="750" height="750" >
-                {% endfor %}
-              </div>
-            </div>
+    <h3>Image entrée</h3>
 
-        </center>
-    </body>
+    <div class="row justify-content-around">
+      <div class="col-12 col-sm-12 col-md-12">
+        <img src="{{ input_im }}" class="img" width="500" height="500">
+
+      </div>
+    </div>
+
+    <h3>Image Proches</h3>
+
+    <div class="row justify-content-around">
+      <div class="col-4 col-sm-6 col-md-8">
+        {% for path in images %}
+        <img src="{{ path }}" class="img" width="200" height="200">
+        {% endfor %}
+      </div>
+    </div>
+
+  </center>
+</body>
+
 </html>
