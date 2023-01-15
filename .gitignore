@@ -78,6 +78,7 @@ target/
 MIR_DATASETS_B/
 ORB/
 SIFT/
+MODEL/
 *.zip
 
 # Jupyter Notebook

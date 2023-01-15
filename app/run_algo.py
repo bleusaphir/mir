@@ -20,7 +20,7 @@ args = parser.parse_args()
 FEATURES_DIR = os.path.join(os.getcwd(), 'app', 'features')
 SAVE_DIR = 'app/static/'
 
-def recherche_f(image_req,top, features1):
+def recherche_f(image_req,top, features1, sim):
   with open('dict_name.json', 'r') as f:
     dict_names = json.load(f)
 
@@ -36,7 +36,7 @@ def recherche_f(image_req,top, features1):
   good_name = '_'.join(features1[image_req][0].split('.')[0].split('_')[:-1]) + '.jpg'
 
   base_image = dict_names[good_name]
-  voisins = getkVoisins(features1, features1[image_req],top)
+  voisins = getkVoisins(features1, features1[image_req],top, sim)
   #print(voisins)
   nom_images_proches = []
   nom_images_non_proches = []
@@ -47,7 +47,7 @@ def recherche_f(image_req,top, features1):
   plt.figure(figsize=(5, 5))
 
 
-
+  print(base_image)
 
   plt.imshow(imread(base_image), cmap='gray', interpolation='none')  
   plt.title("Image requête")
@@ -60,6 +60,7 @@ def recherche_f(image_req,top, features1):
   for j in range(top):
     plt.subplot(int(top/4),int(top/5),j+1)
     print(nom_images_proches[j])
+    print(os.getcwd())
     plt.imshow(imread(nom_images_proches[j]), cmap='gray', interpolation='none')
     nom_images_non_proches.append(os.path.splitext(os.path.basename(nom_images_proches[j]))[0])
     title = "Image proche n°"+str(j)
@@ -70,10 +71,10 @@ def recherche_f(image_req,top, features1):
   return [good_name, path_final]
 
 
-def getkVoisins(lfeatures, test, k) :
+def getkVoisins(lfeatures, test, k, sim) :
   ldistances = []
   for i in range(len(lfeatures)):
-    dist = recherche.flann(test[1], lfeatures[i][1])
+    dist = distance_f(test[1], lfeatures[i][1], distanceName = sim)
     ldistances.append((lfeatures[i][0], lfeatures[i][1], dist))
   ldistances.sort(key=operator.itemgetter(2))
   lvoisins = []
@@ -84,7 +85,7 @@ def getkVoisins(lfeatures, test, k) :
 def distance_f(l1,l2,distanceName):
     if distanceName=="Euclidienne":
         distance = recherche.euclidianDistance(l1,l2)
-    elif distanceName in ["Correlation","Chi carre","Intersection","Bhattacharyya"]:
+    elif distanceName in ["Correlation","Chi carre","Intersection","Bhattachayrya"]:
         if distanceName=="Correlation":
             methode=cv2.HISTCMP_CORREL
             distance = cv2.compareHist(np.float32(l1), np.float32(l2), methode)
@@ -122,16 +123,18 @@ def load(*args, **kwargs):
     kwargs.setdefault('object_hook', json_numpy_obj_hook)
     return json.load(*args, **kwargs)
 
-def search(input, top, descriptor):
+def search(input, top, descriptor, sim):
   import json
   features = []
   #features_file =  os.path.join(FEATURES_DIR, descriptor + '_features.txt')
   for i, x in enumerate(os.listdir(descriptor)):
     features.append((x, np.load(descriptor + '/' + x, allow_pickle=True)))
-    if x.split('.') == input :
+    if '_'.join(x.split('.')[0].split('_')[:-1]) == input.split('.')[0] :
+      
       index_input = i
 
-  img_list = recherche_f(i, top, features)
+  print(input)
+  img_list = recherche_f(index_input, top, features, sim)
 
   return img_list
 

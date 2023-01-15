@@ -65,6 +65,21 @@
             </div>
         </div><br><br>
 
+        <h3><strong>Fonction de calcul de similarité</strong></h3><br>
+
+        <div class="row">
+            <div class="col-md-2 offset-md-5">
+                <select class="custom-select" name="similarity" id="similarity" form="main_form">
+                    <option value="Euclidienne">Euclidienne</option>
+                    <option value="Correlation">Correlation</option>
+                    <option value="Chi carre">Chi-squarre</option>
+                    <option value="Bhattcharyya">Bhattcharyya</option>
+                    <option value="Intersection">Intersection</option>
+                    <option value="Brute force">Brute Force</option>
+                    <option value="Flann">Flann</option>
+                </select>
+            </div>
+        </div><br>
 
         <h3><strong>Choix de l'image</strong></h3><br>
 
@@ -81,6 +96,9 @@
                 <input id="my_submit" type="submit" value="Submit">
             </div>
         </div><br><br>
+
+        
+
         </form> 
         <p id="resultat"></p>
 
