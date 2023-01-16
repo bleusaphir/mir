@@ -73,7 +73,9 @@
     <div class="row justify-content-around">
       <div class="col-12 col-sm-6 col-md-8">
         <img src="{{ graph }}" class="img" width="500" height="500">
-
+        {% for met in metrics %}
+          <p>{{met}}</p>
+          {% endfor %}
       </div>
     </div>
   </center>

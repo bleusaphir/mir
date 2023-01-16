@@ -92,10 +92,11 @@ def Compute_RP(top,nom_image_requete, nom_images_non_proches):
 
   #Evaluation
   nper = rappel_precision.count("pertinant")
+  nonper = rappel_precision.count("non pertinant")
   if nper == 0:
     return 0,0,0,0
   R = nper/top
-  P = nper/top
+  P = nper/nper
   AP = 0
   count = 0
   for i in range(top): 
@@ -212,7 +213,7 @@ def search(input, top, descriptor, sim):
   nameIMG = Display_RP("rp.csv", input, descriptor)
   print(f"R = {R} \t P = {P} \t AP = {AP} \t RP = {RP}")
 
-  return img_list, base_image, nameIMG
+  return img_list, base_image, nameIMG, [R,P,AP,RP]
 
 
 
