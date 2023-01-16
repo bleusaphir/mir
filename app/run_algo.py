@@ -14,7 +14,7 @@ import operator
 
 start = time.time()
 FEATURES_DIR = os.path.join(os.getcwd(), 'app', 'features')
-SAVE_DIR = "static\\"
+SAVE_DIR = "static/"
 
 
 def Compute_RP(top,nom_image_requete, nom_images_non_proches): 
@@ -130,7 +130,7 @@ def Display_RP(fichier, input, des):
   plt.title("R/P")
   plt.legend()
   nameImg = SAVE_DIR + input.split('.')[0] +"_" + des + "_RP.png"
-  plt.savefig("app\\" + nameImg)
+  plt.savefig("app/" + nameImg)
 
   return nameImg
 
@@ -216,18 +216,4 @@ def search(input, top, descriptor, sim):
 
 
 
-# def main():
-#   for path, subdirs, files in os.walk(args.input_dir):
-#     for name in files:
-#       features = indexationMethod[args.index](path)
-#       file = os.path.join(path, name)
-#       images = [1, 3, 4]
-#       for input in images :
-#         nom_image_requete, nom_images_proches, nom_images_non_proches = recherche_f(input, 20, features)
-        
-#       break
-#   plt.show()
-
-if __name__ == '__main__':
-  main()
 
