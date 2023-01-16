@@ -45,9 +45,11 @@ def index():
 
 @app.route("/images")
 def images():
-    images = os.listdir('app\static\images')
-    IMG_LIST = ['images/' + i for i in images]
-    return render_template("images.html", images=IMG_LIST)
+    if len(IMG_LIST) > 0:
+        return render_template("images.html", images=IMG_LIST)
+    else:
+        return render_template('index.html')
+
 
 @app.route("/graphes")
 def graphiques():
@@ -60,5 +62,5 @@ def run_algo():
     img = request.form['image']
     sim = request.form['similarity']
     import app.run_algo as run_algo
-    IMG_LIST, INPUT_IM = run_algo.search(img, top, des, sim)
-    return render_template('images.html', input_im = INPUT_IM, images = IMG_LIST)
+    IMG_LIST, INPUT_IM, GRAPH = run_algo.search(img, top, des, sim)
+    return render_template('images.html', input_im = INPUT_IM, images = IMG_LIST, graph = GRAPH)
