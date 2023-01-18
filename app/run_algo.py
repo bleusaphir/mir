@@ -17,35 +17,7 @@ FEATURES_DIR = os.path.join(os.getcwd(), 'app', 'features')
 SAVE_DIR = "static/"
 
 
-def Compute_RP(top,nom_image_requete, nom_images_non_proches): 
-  rappel_precision=[]
-  position1=nom_image_requete[:3]
 
-  #Preprocessing
-  for j in range(top):
-    position2=nom_images_non_proches[j][:3]
-    if position1==position2:
-      rappel_precision.append("pertinant") 
-    else:
-      rappel_precision.append("non pertinant")
-
-  #Evaluation
-  nper = rappel_precision.count("pertinant")
-  if nper == 0:
-    return 0,0,0,0
-  R = nper/top
-  P = nper/top
-  AP = 0
-  count = 0
-  for i in range(top): 
-    if rappel_precision[i] == "pertinant":
-      count += 1
-      AP += count/(i+1)
-  
-  AP /= nper
-  RP = rappel_precision[:nper].count("pertinant")/nper
-
-  return R,P,AP,RP
 def recherche_f(image_req,top, features1, sim, descriptor):
   with open('dict_name.json', 'r') as f:
     dict_names = json.load(f)
@@ -166,11 +138,7 @@ def distance_f(l1,l2,distanceName):
         distance= recherche.flann(l1,l2)
     return distance
 
-# indexationMethod = {
-#   'SIFT' : indexation.generateSIFT,
-#   'ORB' : indexation.generateORB,
-#   'Model' : indexation.indexationModel
-# }
+
 def json_numpy_obj_hook(dct):
   import base64
   """
@@ -197,7 +165,6 @@ def search(input, top, descriptor, sim):
 
   import json
   features = []
-  #features_file =  os.path.join(FEATURES_DIR, descriptor + '_features.txt')
   for i, x in enumerate(os.listdir(descriptor)):
     features.append((x, np.load(descriptor + '/' + x, allow_pickle=True)))
     if '_'.join(x.split('.')[0].split('_')[:-1]) == input.split('.')[0] :
